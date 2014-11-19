@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Ndsl_Paymentfilter>
+      <version>0.1.0</version>
+    </Ndsl_Paymentfilter>
+  </modules>
+  <global>
+    <helpers>
+      <paymentfilter>
+        <class>Ndsl_Paymentfilter_Helper</class>
+      </paymentfilter>
+    </helpers>
+	<models>
+	  <paymentfilter>
+		<class>Ndsl_Paymentfilter_Model</class>
+		<resourceModel>paymentfilter_mysql4</resourceModel>
+	  </paymentfilter>
+	</models>
+    <events>
+	  <payment_method_is_active> <!-- identifier of the event we want to catch -->
+        <observers>
+          <payment_method_is_active_handler> <!-- identifier of the event handler -->
+            <type>singleton</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>paymentfilter/observer</class> <!-- observers class alias -->
+            <method>paymentMethodIsActive</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </payment_method_is_active_handler>
+        </observers>
+      </payment_method_is_active>
+    </events>
+  </global>
+</config> 
